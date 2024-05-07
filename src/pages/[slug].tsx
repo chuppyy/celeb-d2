@@ -11,7 +11,6 @@ export default function Page(data: any) {
   useEffect(() => {
     try {
       var qcImgDiv = document.getElementById("qcImg");
-
       if (qcImgDiv) {
         var insElement = document.createElement("ins");
         insElement.className = "adsbygoogle";
@@ -20,7 +19,6 @@ export default function Page(data: any) {
         insElement.setAttribute("data-ad-slot", "9137554578");
         insElement.setAttribute("data-ad-format", "auto");
         insElement.setAttribute("data-full-width-responsive", "true");
-
         // Chèn đối tượng ins vào thẻ div
         qcImgDiv.appendChild(insElement);
       }
@@ -28,7 +26,6 @@ export default function Page(data: any) {
         if(qcDivqc3){
             // Tạo một thẻ div mới để chứa script và amp-embed
             var scriptContainer = document.createElement("div");
-
             // Tạo thẻ div cho script
             var scriptDiv = document.createElement("div");
             scriptDiv.id = "M936535ScriptRootC1583648";
@@ -80,7 +77,6 @@ export default function Page(data: any) {
           ampTag.setAttribute("data-container", "M936535ScriptRootC1576086");
           ampTag.setAttribute("data-block-on-consent", "_till_responded");
           scriptContainer.appendChild(ampTag);
-
           // Chèn scriptContainer vào thẻ div "qc"
           qcDiv.appendChild(scriptContainer);
         }
@@ -169,13 +165,13 @@ export default function Page(data: any) {
         <meta property="og:image" content={article.avatarLink} />
         <meta property="og:title" content={article.summary ? article.summary : article.name} />       
       </Head>
-      <Script id="gg-1" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-TQVVKFRWFL`} />
+      <Script id="gg-1" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-MWV5FY8199`} />
       <Script id="gg-2" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-TQVVKFRWFL');
+          gtag('config', 'G-MWV5FY8199');
         `}
       </Script>
 
@@ -183,7 +179,7 @@ export default function Page(data: any) {
   id="adsbygoogle-init"
   strategy="afterInteractive"
   crossOrigin="anonymous"
-  src= "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3619133031508264"/>
+  src= "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8079422152195086"/>
       <main>
 {/*         <Script src="/qcscript.js" /> */}
         <div className="container-flu details">
@@ -244,7 +240,7 @@ export async function getStaticProps({ params }: { params: any }) {
     ).then((res) => res.json());
     return {
       props: { data: response.data },
-      revalidate: 36000
+      revalidate: 360000
     };
   } catch (error) {
     return {
