@@ -171,7 +171,7 @@ export default function Page(data: any) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-MWV5FY8199');
+          gtag('config', 'G-Q3KSZZH8P9');
         `}
       </Script>
 
