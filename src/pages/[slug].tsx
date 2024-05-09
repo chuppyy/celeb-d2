@@ -165,7 +165,7 @@ export default function Page(data: any) {
         <meta property="og:image" content={article.avatarLink} />
         <meta property="og:title" content={article.summary ? article.summary : article.name} />       
       </Head>
-      <Script id="gg-1" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-MWV5FY8199`} />
+      <Script id="gg-1" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-Q3KSZZH8P9`} />
       <Script id="gg-2" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
