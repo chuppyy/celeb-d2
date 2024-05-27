@@ -162,7 +162,7 @@ export default function Page(data: any) {
     <>
       <Head>
         <title>{article.name}</title>
-        <meta property="og:image" content={article.avatarLink.includes('vbonews') ? 'https://apinews.sportsandtravelonline.com/Uploads/Img//638521374628029939.png' : article.avatarLink } />
+        <meta property="og:image" content={article.avatarLink && article.avatarLink.includes('vbonews') ? 'https://apinews.sportsandtravelonline.com/Uploads/Img//638521374628029939.png' : article.avatarLink } />
         <meta property="og:title" content={article.summary ? article.summary : article.name} />       
       </Head>
       <Script id="gg-1" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-ZSFP3RH4BR`} />
