@@ -30,7 +30,6 @@ export default function Page(data: any) {
             var scriptDiv = document.createElement("div");
             scriptDiv.id = "M936535ScriptRootC1583648";
             scriptContainer.appendChild(scriptDiv);
-
             // Tạo thẻ script
             var scriptTag = document.createElement("script");
             scriptTag.src = "https://jsc.adskeeper.com/c/e/celebrity.thongtinluat.com.1583648.js";
