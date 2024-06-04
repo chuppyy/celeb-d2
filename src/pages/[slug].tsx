@@ -35,7 +35,6 @@ export default function Page(data: any) {
             scriptTag.src = "https://jsc.adskeeper.com/c/e/celebrity.thongtinluat.com.1583648.js";
             scriptTag.async = true;
             //  scriptContainer.appendChild(scriptTag);
-
             // Chèn scriptContainer vào thẻ div "qc"
             qcDivqc3.appendChild(scriptContainer);
             qcDivqc3.appendChild(scriptTag);
