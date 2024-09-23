@@ -90,6 +90,7 @@ useEffect(() => {
             qcDivqc3.appendChild(scriptContainer);
             qcDivqc3.appendChild(scriptTag);
         }
+      var qcDiv = document.getElementById("qcmgidgb");
         if (qcDiv) {          
 
         // Tạo một thẻ div mới để chứa script và amp-embed
