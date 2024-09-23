@@ -205,7 +205,7 @@ useEffect(() => {
         {/*<div id="M936535ScriptRootC1576089"></div>*/}
         {/*<script src="https://jsc.adskeeper.com/c/e/celebrity.thongtinluat.com.1576089.js"  async ></script>*/}
       
-       </div>
+     
               <div id="M936535ScriptRootC1576089"></div>
         <script
                   src="https://jsc.adskeeper.com/c/e/celebrity.thongtinluat.com.1576089.js"
