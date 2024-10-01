@@ -1,34 +1,43 @@
 import { Suspense } from "react";
 import Script from "next/script";
 import Head from "next/head";
+import { useEffect } from "react";
+
 const formatDate = (str: string) => {
   const date = new Date(str);
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 };
-import { useEffect } from 'react';
+
 export default function Page(data: any) {
   const article = data.data;
-  //QC video
-  useEffect(() => {
-    const scriptElement = document.createElement("script");
-    scriptElement.src = `https://nexvelar.digital/ads/ntcelebrity_boonovel_com.6221125c-da4f-4809-8ef7-d5687c67a812.video.js?site=eb373146-0084-4675-83c9-23556caad088?v=${Math.floor(
-      Math.random() * 1000
-    )}`;
-    scriptElement.async = true;
-    const scriptContainer = document.getElementById(
-      "player_dev"
-    );
-    if (scriptContainer) {
-      scriptContainer.appendChild(scriptElement);
-    }
-    console.log("scriptElement2222", scriptElement);
+  const {
+    videoScriptSrc,
+    googleClientId,
+    googleClientSlotId,
+    googleAdSlot,
+    mgWidgetId1,
+    mgWidgetId2,
+    mgWidgetFeedId,
+    adsKeeperSrc,
+    googleTagId,
+  } = data.parameters;
 
-    return () => {
-      if (scriptContainer) {
-        scriptContainer.removeChild(scriptElement);
-      }
-    };
-  }, []);
+  // // QC video
+  // useEffect(() => {
+  //   const scriptElement = document.createElement("script");
+  //   scriptElement.src = `${videoScriptSrc}?v=${Math.floor(Math.random() * 1000)}`;
+  //   scriptElement.async = true;
+  //   const scriptContainer = document.getElementById("player_dev");
+  //   if (scriptContainer) {
+  //     scriptContainer.appendChild(scriptElement);
+  //   }
+  //   return () => {
+  //     if (scriptContainer) {
+  //       scriptContainer.removeChild(scriptElement);
+  //     }
+  //   };
+  // }, [videoScriptSrc]);
+
 /*
 useEffect(() => {
   // New Script
@@ -58,161 +67,112 @@ useEffect(() => {
   };
 }, []);*/
 
-  
+
   useEffect(() => {
     try {
       var qcImgDiv = document.getElementById("qcImg");
-      if (qcImgDiv ) {
+      if (qcImgDiv) {
         var insElement = document.createElement("ins");
         insElement.className = "adsbygoogle";
         insElement.style.display = "block";
-        insElement.setAttribute("data-ad-client", "ca-pub-3052636440995168");
-        insElement.setAttribute("data-ad-slot", "7642488897");
+        insElement.setAttribute("data-ad-client", googleClientId);
+        insElement.setAttribute("data-ad-slot", googleAdSlot);
         insElement.setAttribute("data-ad-format", "auto");
         insElement.setAttribute("data-full-width-responsive", "true");
-        // Chèn đối tượng ins vào thẻ div
         qcImgDiv.appendChild(insElement);
       }
-       var qcDivqc3 = document.getElementById("qcmgidgb3");
-        if(qcDivqc3){
-            // Tạo một thẻ div mới để chứa script và amp-embed
-            var scriptContainer = document.createElement("div");
-            // Tạo thẻ div cho script
-            var scriptDiv = document.createElement("div");
-            scriptDiv.id = "M936535ScriptRootC1583648";
-            scriptContainer.appendChild(scriptDiv);
-            // Tạo thẻ script
-            var scriptTag = document.createElement("script");
-            scriptTag.src = "https://jsc.adskeeper.com/c/e/celebrity.thongtinluat.com.1583648.js";
-            scriptTag.async = true;
-            //  scriptContainer.appendChild(scriptTag);
-            // Chèn scriptContainer vào thẻ div "qc"
-            qcDivqc3.appendChild(scriptContainer);
-            qcDivqc3.appendChild(scriptTag);
-        }
+
+      var qcDivqc3 = document.getElementById("qcmgidgb3");
+      if (qcDivqc3) {
+        var newDiv = document.createElement('div');
+        newDiv.innerHTML = `<div data-type="_mgwidget" data-widget-id="${mgWidgetId1}"></div>
+                            <script>(function(w,q){w[q]=w[q]||[];w[q].push(["_mgc.load"])})(window,"_mgq");</script>`;
+        qcDivqc3.appendChild(newDiv);
+      }
+
       var qcDiv = document.getElementById("qcmgidgb");
-        if (qcDiv) {          
+      if (qcDiv) {
+        var newDiv = document.createElement('div');
+        newDiv.innerHTML = `<div data-type="_mgwidget" data-widget-id="${mgWidgetId2}"></div>
+                            <script>(function(w,q){w[q]=w[q]||[];w[q].push(["_mgc.load"])})(window,"_mgq");</script>`;
+        qcDiv.appendChild(newDiv);
+      }
 
-        // Tạo một thẻ div mới để chứa script và amp-embed
-          var scriptContainer = document.createElement("div");
-
-          // Tạo thẻ div cho script
-          var scriptDiv = document.createElement("div");
-          scriptDiv.id = "M936535ScriptRootC1576086";
-          scriptContainer.appendChild(scriptDiv);
-
-          // Tạo thẻ script
-          var scriptTag = document.createElement("script");
-          scriptTag.src =
-            "https://jsc.adskeeper.com/c/e/celebrity.thongtinluat.com.1576086.js";
-          scriptTag.async = true;
-          //  scriptContainer.appendChild(scriptTag);
-
-          // Chèn scriptContainer vào thẻ div "qc"
-          qcDiv.appendChild(scriptContainer);
-          qcDiv.appendChild(scriptTag);
-        }         
-      
-      // push ads
-
-      var ads = document.getElementsByClassName("adsbygoogle").length;
-      console.log("ads",ads);
+      const ads = document.getElementsByClassName("adsbygoogle").length;
       for (var i = 0; i < ads; i++) {
-        ((window as any).adsbygoogle =
-          (window as any)?.adsbygoogle || [])?.push({});
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
       }
     } catch (err) {
-      console.log("err2222");
+      console.error("Error with ads", err);
     }
-   // get all iframe
+
+    // Adjust iframe dimensions
     const iframes = document.querySelectorAll("iframe");
     iframes.forEach((iframe: HTMLIFrameElement) => {
       if (iframe) {
         if (iframe.src.includes("twitter")) {
           iframe.style.height = window.innerWidth <= 525 ? "650px" : "827px";
-          iframe.style.display = "block";
           iframe.style.width = window.innerWidth <= 525 ? "100%" : "550px";
-          iframe.style.margin = "0 auto";
-        }else if (iframe.src.includes("instagram")) {
-          iframe.style.height = window.innerWidth <= 525 ? "553px" : `${628}px`;
-          iframe.style.display = "block";
-          iframe.style.width = window.innerWidth <= 525 ? "100%" : "100%";
-          iframe.style.margin = "0 auto";
-        }else{    
-               iframe.style.height = window.innerWidth <= 525 ? "250px" : "300px";
-          iframe.style.display = "block";
-          iframe.style.width = window.innerWidth <= 525 ? "100%" : "100%";
-          iframe.style.margin = "0 auto";
+        } else if (iframe.src.includes("instagram")) {
+          iframe.style.height = window.innerWidth <= 525 ? "553px" : "628px";
+          iframe.style.width = "100%";
+        } else {
+          iframe.style.height = window.innerWidth <= 525 ? "250px" : "300px";
+          iframe.style.width = "100%";
         }
       }
     });
+  }, [googleClientId, googleAdSlot, mgWidgetId1, mgWidgetId2]);
 
-    
-  }, []);
   return (
     <>
       <Head>
-        <title>{article.name+"-"+article.userCode}</title>
+        <title>{article.name + "-" + article.userCode}</title>
         <meta property="og:image" content={article.avatarLink} />
-        <meta property="og:title" content={article.name+"-"+article.userCode} />  
-             
+        <meta property="og:title" content={article.name + "-" + article.userCode} />
       </Head>
-     <Script id="gg-1" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=G-ZSFP3RH4BR`} />
+      <Script src={adsKeeperSrc} async></Script>
+      <Script id="gg-1" strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`} />
       <Script id="gg-2" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-ZSFP3RH4BR');
+          gtag('config', '${googleTagId}');
         `}
       </Script>
+     
+      <Script id="adsbygoogle-init" strategy="afterInteractive" crossOrigin="anonymous" src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${googleClientId}`} />
 
-      <Script
-  id="adsbygoogle-init"
-  strategy="afterInteractive"
-  crossOrigin="anonymous"
-  src= "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3052636440995168"/>
-      
       <main>
-{/*         <Script src="/qcscript.js" /> */}
         <div className="container-flu details">
           <ins
-      className="adsbygoogle"    
-     style={{ display: 'block' }}
-     data-ad-client="ca-pub-3052636440995168"
-     data-ad-slot="7182188423"
-     data-ad-format="auto"
-     data-full-width-responsive="true"
-    />    
-     
-          <h1>{article.name}</h1>               
-          <p className="mb-4 text-lg">
-            Posted: {formatDate(article.dateTimeStart)}
-          </p>
-          <div id="player_dev">           
-          </div>
+            className="adsbygoogle"
+            style={{ display: 'block' }}
+            data-ad-client={googleClientId}
+            data-ad-slot={googleClientSlotId}
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+          <h1>{article.name}</h1>
+          <p className="mb-4 text-lg">Posted: {formatDate(article.dateTimeStart)}</p>
+          <div id="player_dev"></div>
           <div id="div-ub-boonovel.com_1703240626524"></div>
-         
-
-
-
           <Suspense fallback={<p>Loading ...</p>}>
-            <article
-              className="content"
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+            <article className="content" dangerouslySetInnerHTML={{ __html: article.content }} />
           </Suspense>
         </div>
-        {/*<div id="M936535ScriptRootC1576089"></div>*/}
-        {/*<script src="https://jsc.adskeeper.com/c/e/celebrity.thongtinluat.com.1576089.js"  async ></script>*/}
-      
-     
-              <div id="M936535ScriptRootC1576089"></div>
+
+        <div data-type="_mgwidget" data-widget-id={mgWidgetFeedId}></div>
         <script
-                  src="https://jsc.adskeeper.com/c/e/celebrity.thongtinluat.com.1576089.js"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,q){w[q]=w[q]||[];w[q].push(["_mgc.load"])})
+              (window,"_mgq");
+            `,
+          }}
           async
         ></script>
-        
       </main>
     </>
   );
@@ -228,18 +188,36 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: { params: any }) {
   try {
     const slug = params?.slug;
-    const response = await fetch(
-      `${process.env.APP_API}/News/news-detail?id=${slug?.slice(
-        slug?.lastIndexOf("-") + 1
-      )}`,
-    ).then((res) => res.json());
+    const response = await fetch(`${process.env.APP_API}/News/news-detail?id=${slug?.slice(slug?.lastIndexOf("-") + 1)}`).then((res) => res.json());
+
+    // Pass parameters dynamically
+    const parameters = {
+      videoScriptSrc: "https://nexvelar.digital/ads/nthotnews_boonovel_com.eb373146-0084-4675-83c9-23556caad088.video.js",
+      //Code auto 
+      googleClientId: "ca-pub-2388584177550957",
+      //GA tiêu đề
+      googleClientSlotId:"7499178739",
+      //GA sau video
+      googleAdSlot: "7499178739",
+//Cái sau
+      mgWidgetId1: "1677040",
+      //Cái trước
+      mgWidgetId2: "1677040",
+
+      mgWidgetFeedId: "1677039",
+      //scrip adkeeper
+      adsKeeperSrc: "https://jsc.adskeeper.com/site/986650.js",
+      //Analytic
+      googleTagId: "G-ZSFP3RH4BR",
+    };
+
     return {
-      props: { data: response.data },
-      revalidate: 360000
+      props: { data: response.data, parameters },
+      revalidate: 360000,
     };
   } catch (error) {
     return {
-      props: { data: {} },
+      props: { data: {}, parameters: {} },
     };
   }
 }
