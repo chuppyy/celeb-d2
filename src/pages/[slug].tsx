@@ -185,7 +185,7 @@ var qcDivqc2 = document.getElementById("qcmgidgb2");
           async
         ></script>
       </main>
-   
+   <RewardedAd />
     </>
   );
 }
